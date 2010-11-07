@@ -357,6 +357,9 @@ int main(int argc, char *argv[])
       {
          BAEMixer_SetAudioTask(theMixer, PV_Task, (void *)theMixer);
 
+		  // turn on nice verb
+		 BAEMixer_SetDefaultReverb(theMixer, BAE_REVERB_TYPE_8);
+		  		  
          printf("BAE memory used during idle prior to SetBankToFile: %ld\n\n", BAE_GetSizeOfMemoryUsed());
 
          if (PV_ParseCommands(argc, argv, "-p", TRUE, parmFile))

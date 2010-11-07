@@ -783,6 +783,7 @@ XERR XGetSampleInfoFromSnd(XPTR pResource, SampleDataInfo *pOutInfo)
 						break;
 			#endif
 					default:
+						BAE_PRINTF("Unsupported codec %ld\n", pOutInfo->compressionType);
 						BAE_ASSERT(FALSE);
 						err = -3;
 						break;
@@ -998,6 +999,7 @@ XBYTE				order = X_WORD_ORDER;
 			break;
 #endif
 		default:
+			BAE_PRINTF("Unsupported codec %ld\n", info->compressionType);
 			BAE_ASSERT(FALSE);
 			return NULL;
 		}
