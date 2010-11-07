@@ -40,24 +40,6 @@
 		AA0A975311BC44B500D01187 /* X_Decompress.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A972C11BC44B500D01187 /* X_Decompress.c */; };
 		AA0A975411BC44B500D01187 /* X_IMA.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A972E11BC44B500D01187 /* X_IMA.c */; };
 		AA0A975511BC44B500D01187 /* BAE_API_MacOSX.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A973311BC44B500D01187 /* BAE_API_MacOSX.c */; };
-		AA0A976E11BC44CC00D01187 /* mpa_c_copybytes.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A975811BC44CC00D01187 /* mpa_c_copybytes.c */; };
-		AA0A976F11BC44CC00D01187 /* mpa_conv.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A975911BC44CC00D01187 /* mpa_conv.c */; };
-		AA0A977011BC44CC00D01187 /* mpa_dec.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A975A11BC44CC00D01187 /* mpa_dec.c */; };
-		AA0A977111BC44CC00D01187 /* mpa_dec_bits.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A975B11BC44CC00D01187 /* mpa_dec_bits.c */; };
-		AA0A977211BC44CC00D01187 /* mpa_dec_crc.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A975C11BC44CC00D01187 /* mpa_dec_crc.c */; };
-		AA0A977311BC44CC00D01187 /* mpa_dec_l1.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A975D11BC44CC00D01187 /* mpa_dec_l1.c */; };
-		AA0A977411BC44CC00D01187 /* mpa_dec_l12.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A975E11BC44CC00D01187 /* mpa_dec_l12.c */; };
-		AA0A977511BC44CC00D01187 /* mpa_dec_l2.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A975F11BC44CC00D01187 /* mpa_dec_l2.c */; };
-		AA0A977611BC44CC00D01187 /* mpa_dec_l3.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A976011BC44CC00D01187 /* mpa_dec_l3.c */; };
-		AA0A977711BC44CC00D01187 /* mpa_dec_l3hf.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A976211BC44CC00D01187 /* mpa_dec_l3hf.c */; };
-		AA0A977811BC44CC00D01187 /* mpa_dec_l3u.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A976311BC44CC00D01187 /* mpa_dec_l3u.c */; };
-		AA0A977911BC44CC00D01187 /* mpa_dec_mc.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A976411BC44CC00D01187 /* mpa_dec_mc.c */; };
-		AA0A977A11BC44CC00D01187 /* mpa_dec_poly.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A976511BC44CC00D01187 /* mpa_dec_poly.c */; };
-		AA0A977B11BC44CC00D01187 /* mpa_dec_tab.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A976711BC44CC00D01187 /* mpa_dec_tab.c */; };
-		AA0A977C11BC44CC00D01187 /* mpa_dec_vec.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A976911BC44CC00D01187 /* mpa_dec_vec.c */; };
-		AA0A977D11BC44CC00D01187 /* mpa_version.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A976A11BC44CC00D01187 /* mpa_version.c */; };
-		AA0A977E11BC44CC00D01187 /* XMPEG_BAE_API.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A976B11BC44CC00D01187 /* XMPEG_BAE_API.c */; };
-		AA0A977F11BC44CC00D01187 /* XMPEGFilesSun.c in Sources */ = {isa = PBXBuildFile; fileRef = AA0A976D11BC44CC00D01187 /* XMPEGFilesSun.c */; };
 		AA83957511A9F4BF00609D90 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA83957411A9F4BF00609D90 /* CoreFoundation.framework */; };
 		AA83957A11A9F4D300609D90 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA83957911A9F4D300609D90 /* CoreAudio.framework */; };
 		AA83958211A9F52100609D90 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA83958111A9F52100609D90 /* AudioToolbox.framework */; };
@@ -124,29 +106,6 @@
 		AA0A973211BC44B500D01187 /* BAE_API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAE_API.h; sourceTree = "<group>"; };
 		AA0A973311BC44B500D01187 /* BAE_API_MacOSX.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BAE_API_MacOSX.c; sourceTree = "<group>"; };
 		AA0A973411BC44B500D01187 /* BAEBuildOptions_MacOSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAEBuildOptions_MacOSX.h; sourceTree = "<group>"; };
-		AA0A975711BC44CC00D01187 /* mpa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mpa.h; sourceTree = "<group>"; };
-		AA0A975811BC44CC00D01187 /* mpa_c_copybytes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mpa_c_copybytes.c; sourceTree = "<group>"; };
-		AA0A975911BC44CC00D01187 /* mpa_conv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mpa_conv.c; sourceTree = "<group>"; };
-		AA0A975A11BC44CC00D01187 /* mpa_dec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mpa_dec.c; sourceTree = "<group>"; };
-		AA0A975B11BC44CC00D01187 /* mpa_dec_bits.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mpa_dec_bits.c; sourceTree = "<group>"; };
-		AA0A975C11BC44CC00D01187 /* mpa_dec_crc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mpa_dec_crc.c; sourceTree = "<group>"; };
-		AA0A975D11BC44CC00D01187 /* mpa_dec_l1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mpa_dec_l1.c; sourceTree = "<group>"; };
-		AA0A975E11BC44CC00D01187 /* mpa_dec_l12.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mpa_dec_l12.c; sourceTree = "<group>"; };
-		AA0A975F11BC44CC00D01187 /* mpa_dec_l2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mpa_dec_l2.c; sourceTree = "<group>"; };
-		AA0A976011BC44CC00D01187 /* mpa_dec_l3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mpa_dec_l3.c; sourceTree = "<group>"; };
-		AA0A976111BC44CC00D01187 /* mpa_dec_l3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mpa_dec_l3.h; sourceTree = "<group>"; };
-		AA0A976211BC44CC00D01187 /* mpa_dec_l3hf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mpa_dec_l3hf.c; sourceTree = "<group>"; };
-		AA0A976311BC44CC00D01187 /* mpa_dec_l3u.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mpa_dec_l3u.c; sourceTree = "<group>"; };
-		AA0A976411BC44CC00D01187 /* mpa_dec_mc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mpa_dec_mc.c; sourceTree = "<group>"; };
-		AA0A976511BC44CC00D01187 /* mpa_dec_poly.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mpa_dec_poly.c; sourceTree = "<group>"; };
-		AA0A976611BC44CC00D01187 /* mpa_dec_proto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mpa_dec_proto.h; sourceTree = "<group>"; };
-		AA0A976711BC44CC00D01187 /* mpa_dec_tab.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mpa_dec_tab.c; sourceTree = "<group>"; };
-		AA0A976811BC44CC00D01187 /* mpa_dec_tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mpa_dec_tab.h; sourceTree = "<group>"; };
-		AA0A976911BC44CC00D01187 /* mpa_dec_vec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mpa_dec_vec.c; sourceTree = "<group>"; };
-		AA0A976A11BC44CC00D01187 /* mpa_version.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mpa_version.c; sourceTree = "<group>"; };
-		AA0A976B11BC44CC00D01187 /* XMPEG_BAE_API.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = XMPEG_BAE_API.c; sourceTree = "<group>"; };
-		AA0A976C11BC44CC00D01187 /* XMPEG_BAE_API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPEG_BAE_API.h; sourceTree = "<group>"; };
-		AA0A976D11BC44CC00D01187 /* XMPEGFilesSun.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = XMPEGFilesSun.c; sourceTree = "<group>"; };
 		AA83957411A9F4BF00609D90 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		AA83957911A9F4D300609D90 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		AA83958111A9F52100609D90 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -182,7 +141,6 @@
 		08FB7795FE84155DC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				AA0A975611BC44CC00D01187 /* BAE_MPEG_Source_II */,
 				AA0A970411BC44B500D01187 /* BAE_Source */,
 				AADB00FD11853718002DC493 /* playbae.c */,
 			);
@@ -266,37 +224,6 @@
 			);
 			path = Platform;
 			sourceTree = "<group>";
-		};
-		AA0A975611BC44CC00D01187 /* BAE_MPEG_Source_II */ = {
-			isa = PBXGroup;
-			children = (
-				AA0A975711BC44CC00D01187 /* mpa.h */,
-				AA0A975811BC44CC00D01187 /* mpa_c_copybytes.c */,
-				AA0A975911BC44CC00D01187 /* mpa_conv.c */,
-				AA0A975A11BC44CC00D01187 /* mpa_dec.c */,
-				AA0A975B11BC44CC00D01187 /* mpa_dec_bits.c */,
-				AA0A975C11BC44CC00D01187 /* mpa_dec_crc.c */,
-				AA0A975D11BC44CC00D01187 /* mpa_dec_l1.c */,
-				AA0A975E11BC44CC00D01187 /* mpa_dec_l12.c */,
-				AA0A975F11BC44CC00D01187 /* mpa_dec_l2.c */,
-				AA0A976011BC44CC00D01187 /* mpa_dec_l3.c */,
-				AA0A976111BC44CC00D01187 /* mpa_dec_l3.h */,
-				AA0A976211BC44CC00D01187 /* mpa_dec_l3hf.c */,
-				AA0A976311BC44CC00D01187 /* mpa_dec_l3u.c */,
-				AA0A976411BC44CC00D01187 /* mpa_dec_mc.c */,
-				AA0A976511BC44CC00D01187 /* mpa_dec_poly.c */,
-				AA0A976611BC44CC00D01187 /* mpa_dec_proto.h */,
-				AA0A976711BC44CC00D01187 /* mpa_dec_tab.c */,
-				AA0A976811BC44CC00D01187 /* mpa_dec_tab.h */,
-				AA0A976911BC44CC00D01187 /* mpa_dec_vec.c */,
-				AA0A976A11BC44CC00D01187 /* mpa_version.c */,
-				AA0A976B11BC44CC00D01187 /* XMPEG_BAE_API.c */,
-				AA0A976C11BC44CC00D01187 /* XMPEG_BAE_API.h */,
-				AA0A976D11BC44CC00D01187 /* XMPEGFilesSun.c */,
-			);
-			name = BAE_MPEG_Source_II;
-			path = ../../BAE_MPEG_Source_II;
-			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -382,24 +309,6 @@
 				AA0A975311BC44B500D01187 /* X_Decompress.c in Sources */,
 				AA0A975411BC44B500D01187 /* X_IMA.c in Sources */,
 				AA0A975511BC44B500D01187 /* BAE_API_MacOSX.c in Sources */,
-				AA0A976E11BC44CC00D01187 /* mpa_c_copybytes.c in Sources */,
-				AA0A976F11BC44CC00D01187 /* mpa_conv.c in Sources */,
-				AA0A977011BC44CC00D01187 /* mpa_dec.c in Sources */,
-				AA0A977111BC44CC00D01187 /* mpa_dec_bits.c in Sources */,
-				AA0A977211BC44CC00D01187 /* mpa_dec_crc.c in Sources */,
-				AA0A977311BC44CC00D01187 /* mpa_dec_l1.c in Sources */,
-				AA0A977411BC44CC00D01187 /* mpa_dec_l12.c in Sources */,
-				AA0A977511BC44CC00D01187 /* mpa_dec_l2.c in Sources */,
-				AA0A977611BC44CC00D01187 /* mpa_dec_l3.c in Sources */,
-				AA0A977711BC44CC00D01187 /* mpa_dec_l3hf.c in Sources */,
-				AA0A977811BC44CC00D01187 /* mpa_dec_l3u.c in Sources */,
-				AA0A977911BC44CC00D01187 /* mpa_dec_mc.c in Sources */,
-				AA0A977A11BC44CC00D01187 /* mpa_dec_poly.c in Sources */,
-				AA0A977B11BC44CC00D01187 /* mpa_dec_tab.c in Sources */,
-				AA0A977C11BC44CC00D01187 /* mpa_dec_vec.c in Sources */,
-				AA0A977D11BC44CC00D01187 /* mpa_version.c in Sources */,
-				AA0A977E11BC44CC00D01187 /* XMPEG_BAE_API.c in Sources */,
-				AA0A977F11BC44CC00D01187 /* XMPEGFilesSun.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,17 +321,18 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"USE_MPEG_DECODER=1",
 					"_DEBUG=1",
 					"X_PLATFORM=X_MACINTOSH",
 				);
 				INSTALL_PATH = /usr/local/bin;
 				PRODUCT_NAME = playbae;
+				SDKROOT = macosx;
 				VALID_ARCHS = i386;
 			};
 			name = Debug;
@@ -433,15 +343,16 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"USE_MPEG_DECODER=1",
 					"_DEBUG=1",
 					"X_PLATFORM=X_MACINTOSH",
 				);
 				INSTALL_PATH = /usr/local/bin;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = playbae;
+				SDKROOT = macosx;
 				VALID_ARCHS = i386;
 			};
 			name = Release;

@@ -43,24 +43,24 @@ SRC		+= \
 			g72x.c
 
 			
-SRC		+= 	\
-		XMPEGFilesSun.c \
-		XMPEG_BAE_API.c \
-		mpa_c_copybytes.c \
-		mpa_conv.c \
-		mpa_dec.c \
-		mpa_dec_bits.c \
-		mpa_dec_crc.c \
-		mpa_dec_l1.c \
-		mpa_dec_l12.c \
-		mpa_dec_l2.c \
-		mpa_dec_l3.c \
-		mpa_dec_l3hf.c \
-		mpa_dec_l3u.c \
-		mpa_dec_poly.c \
-		mpa_dec_tab.c \
-		mpa_dec_vec.c \
-		mpa_version.c
+#SRC		+= 	\
+#		XMPEGFilesSun.c \
+#		XMPEG_BAE_API.c \
+#		mpa_c_copybytes.c \
+#		mpa_conv.c \
+#		mpa_dec.c \
+#		mpa_dec_bits.c \
+#		mpa_dec_crc.c \
+#		mpa_dec_l1.c \
+#		mpa_dec_l12.c \
+#		mpa_dec_l2.c \
+#		mpa_dec_l3.c \
+#		mpa_dec_l3hf.c \
+#		mpa_dec_l3u.c \
+#		mpa_dec_poly.c \
+#		mpa_dec_tab.c \
+#		mpa_dec_vec.c \
+#		mpa_version.c
 			
 SRC		+=	playbae.c
 
@@ -74,8 +74,9 @@ CXX		:= g++
 LD		:= g++
 
 CFLAGS  	:= $(ARCH) -g -O3 $(INC_PATH) -D_THREAD_SAFE
-CFLAGS		+= -DX_PLATFORM=X_MACINTOSH -DUSE_MPEG_DECODER=1
-CFLAGS		+= -D_DEBUG=1 -funroll-all-loops
+CFLAGS		+= -DX_PLATFORM=X_MACINTOSH
+#CFLAGS		+= -DUSE_MPEG_DECODER=1
+CFLAGS		+= -D_DEBUG=1
 #CFLAGS		+= -DREVERB_USED=REVERB_DISABLED
 CXXFLAGS 	:= $(CFLAGS)
 LDFLAGS		:= $(ARCH) -all_load -static-libgcc -prebind
@@ -111,37 +112,19 @@ lib_install:
 CONTENT := ../../Content
 BANKS := ../../banks
 
-#beatnik-analogue.rmf
-#britney16voices.rmf
-#sfx-medley.rmf
-#chop-squad-full.rmf
-#polyzoot-full.rmf
-#renegado-full.rmf
-#the-future-is.rmf
-#health_and_safety.rmf
-#Hide 'n Seek.rmf
-#House.rmf
-#EndGame.rmf
-#jetset-full.rmf
-#loungy-sixties.rmf
-#science.rmf
-#sciencelooptest.rmf
-#LT_RMF_MPEG.rmf
-
-#TEST_RMF	:= chop-squad-full.rmf
-#TEST_RMF	:= britney16voices.rmf
-#TEST_RMF	:= "Hide 'n Seek.rmf"
+# requires mp3 codec
+#TEST_RMF    := LT_RMF_MPEG.rmf
+#TEST_RMF	:= little_boss.rmf
+#TEST_RMF	:= Ajarna.rmf
 #TEST_RMF	:= health_and_safety.rmf
+
+# standard
 #TEST_RMF	:= renegado-full.rmf
-#TEST_RMF	:= polyzoot-full.rmf
 #TEST_RMF	:= the-future-is.rmf
 #TEST_RMF    := jetset-full.rmf
-#TEST_RMF    := britney16voices.rmf
-#TEST_RMF    := LT_RMF_MPEG.rmf
-#TEST_RMF	:= science.rmf
-#TEST_RMF	:= fame.rmf
-#TEST_RMF	:= little_boss.rmf
-TEST_RMF	:= Ajarna.rmf
+#TEST_RMF	:= "Hide 'n Seek.rmf"
+#TEST_RMF	:= polyzoot-full.rmf
+TEST_RMF	:= chop-squad-full.rmf
 
 test1: $(TARGET)
 	./$(TARGET) -p $(BANKS)/patches/patches.hsb -m $(CONTENT)/rmf/kartv.mid -mr 44100
