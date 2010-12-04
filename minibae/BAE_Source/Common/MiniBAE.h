@@ -410,21 +410,38 @@ enum
 	MODULATION_MSB			=	1,
 	DATA_MSB				=	6,
 	VOLUME_MSB				=	7,
+	BALANCE_MSB				=	8,
+	PAN_MSB					=	10,
 	EXPRESSION_MSB			=	11,
 	
 	BANK_LSB				=	32,
 	MODULATION_LSB			=	33,
 	DATA_LSB				=	38,
 	VOLUME_LSB				=	39,
+	BALANCE_LSB				=	40,
+	PAN_LSB					=	42,
 	EXPRESSION_LSB			=	43,
 	
 	SUSTAIN					=	64,
+	SOFT_PEDAL				=	67,
+	
+	REVERB_TYPE				=	90, // non-standard
+	REVERB_SEND				=	91,
+	TREMOLO_LEVEL			=	92,
+	CHROUS_SEND_LEVEL		=	93,
+	DETUNE_DEPTH			=	94,
+	PHASER_DEPTH			=	95,
+	
 	INCREMENT_DATA			=	96,
 	DECREMENT_DATA			=	97,
 	NRPN_LSB				=	98,
 	NRPN_MSB				=	99,
 	RPN_LSB					=	100,
 	RPN_MSB					=	101,
+	
+	ALL_NOTES_OFF_CHANNEL	=	120,
+	RESET_ALL_CONTROLLERS	=	121,
+	ALL_NOTES_OFF			=	123,
 	
 	/** Midi specific RPN's 
 	 To set or change the value of a Registered Parameter:

@@ -7282,25 +7282,25 @@ BAEResult BAESong_ParseMidiData(BAESong song, unsigned char commandByte, unsigne
 		data3Byte = data3Byte;
 		switch(commandByte & 0xF0)
 		{
-			case 0x80:	// Note off
+			case NOTE_OFF:	// Note off
 				theErr = BAESong_NoteOff(song, channel, data1Byte, data2Byte, time);
 				break;
-			case 0x90:	// Note on
+			case NOTE_ON:	// Note on
 				theErr = BAESong_NoteOn(song, channel, data1Byte, data2Byte, time);
 				break;
-			case 0xA0:	// key pressure (aftertouch)
+			case POLY_AFTERTOUCH:	// key pressure (aftertouch)
 				theErr = BAESong_KeyPressure(song, channel, data1Byte, data2Byte, time);
 				break;
-			case 0xB0:	// controllers
+			case CONTROL_CHANGE:	// controllers
 				theErr = BAESong_ControlChange(song, channel, data1Byte, data2Byte, time);
 				break;
-			case 0xC0:	// Program change
+			case PROGRAM_CHANGE:	// Program change
 				theErr = BAESong_ProgramChange(song, channel, data1Byte, time);
 				break;
-			case 0xD0:	// channel pressure (aftertouch)
+			case CHANNEL_AFTERTOUCH:	// channel pressure (aftertouch)
 				theErr = BAESong_ChannelPressure(song, channel, data1Byte, time);
 				break;
-			case 0xE0:	// SetPitchBend
+			case PITCH_BEND:	// SetPitchBend
 				theErr = BAESong_PitchBend(song, channel, data1Byte, data2Byte, time);
 				break;
 		}

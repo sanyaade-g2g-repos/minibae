@@ -1990,12 +1990,88 @@ typedef struct GM_AudioInfo GM_AudioInfo;
 void GM_GetRealtimeAudioInformation(GM_AudioInfo *pInfo);
 
 
-// midi commands
-#define	B_NOTE_ON			0x90
-#define B_NOTE_OFF			0x80
-#define B_CONTROL_CHANGE	0xB0
-#define B_PROGRAM_CHANGE	0xC0
-#define B_PITCH_BEND		0xE0
+/** Standard Midi constants.
+ */
+enum
+{
+	
+	/** MIDI status commands most significant bit is 1 */
+	B_NOTE_OFF					=   0x80,
+	B_NOTE_ON					=   0x90,
+	B_POLY_AFTERTOUCH			=   0xA0,
+	B_CONTROL_CHANGE			=   0xB0,
+	B_PROGRAM_CHANGE			=   0xC0,
+	B_CHANNEL_AFTERTOUCH		=   0xD0,
+	B_PITCH_BEND				=   0xE0,
+	B_SYSTEM_EXCLUSIVE			=   0xF0,
+	B_SYSTEM_EXCLUSIVE_CONT		=   0xF7,
+	
+	/** Controller values. Obtained from:
+	 http://www.midi.org/about-midi/table3.shtml
+	 */
+	B_BANK_MSB					=	0,
+	B_MODULATION_MSB			=	1,
+	B_DATA_MSB					=	6,
+	B_VOLUME_MSB				=	7,
+	B_BALANCE_MSB				=	8,
+	B_PAN_MSB					=	10,
+	B_EXPRESSION_MSB			=	11,
+	
+	B_BANK_LSB					=	32,
+	B_MODULATION_LSB			=	33,
+	B_DATA_LSB					=	38,
+	B_VOLUME_LSB				=	39,
+	B_BALANCE_LSB				=	40,
+	B_PAN_LSB					=	42,
+	B_EXPRESSION_LSB			=	43,
+	
+	B_SUSTAIN					=	64,
+	B_SOFT_PEDAL				=	67,
+
+	B_REVERB_TYPE				=	90, // non-standard
+	B_REVERB_SEND				=	91,
+	B_TREMOLO_LEVEL				=	92,
+	B_CHROUS_SEND_LEVEL			=	93,
+	B_DETUNE_DEPTH				=	94,
+	B_PHASER_DEPTH				=	95,
+
+	B_INCREMENT_DATA			=	96,
+	B_DECREMENT_DATA			=	97,
+	B_NRPN_LSB					=	98,
+	B_NRPN_MSB					=	99,
+	B_RPN_LSB					=	100,
+	B_RPN_MSB					=	101,
+	
+	B_ALL_NOTES_OFF_CHANNEL		=	120,
+	B_RESET_ALL_CONTROLLERS		=	121,
+	B_ALL_NOTES_OFF				=	123,
+	
+	/** Midi specific RPN's 
+	 To set or change the value of a Registered Parameter:
+	 
+	 1. Send two Control Change messages using Control Numbers 101
+	 (65H)  and 100 (64H) to select the desired Registered Parameter
+	 Number, as per  the following table.
+	 
+	 2. To set the selected Registered Parameter to a specific value,
+	 send  a Control Change messages to the Data Entry MSB controller
+	 (Control  Number 6). If the selected Registered Parameter
+	 requires the LSB to be  set, send another Control Change message
+	 to the Data Entry LSB  controller (Control Number 38).
+	 
+	 3. To make a relative adjustment to the selected Registered 
+	 Parameter's current value, use the Data Increment or Data
+	 Decrement  controllers (Control Numbers 96 and 97).
+	 */
+	/** MSB = +/- semitones LSB =+/--cents */
+	B_RPN_PITCH_BEND_SENSITIVITY_LSB	=	0,
+	B_RPN_PITCH_BEND_SENSITIVITY_MSB	=	0,
+	
+	
+	/** Standard MIDI Files meta event definitions */
+	B_META_EVENT				=   0xFF,
+};
+
 
 // External MIDI links
 #define Q_GET_TICK	0L		// if you pass this constant for timeStamp it will get the current
