@@ -93,7 +93,7 @@ static void PV_Task(void *reference)
 	}
 	
 	averr = nil;
-	[audioSession setCategory:AVAudioSessionCategoryPlayback error:&averr];
+	[audioSession setCategory:AVAudioSessionCategorySoloAmbient error:&averr];
 	if(averr)
 	{
         NSLog(@"audioSession: %@ %d %@", [averr domain], [averr code], [[averr userInfo] description]);
