@@ -6,9 +6,9 @@
 //  Copyright 2010 Igor's Software Laboratories. All rights reserved.
 //
 
-#import "InteractiveView.h"
 #import <CoreGraphics/CGGeometry.h>
 #import <UIKit/UIStringDrawing.h>
+#import "InteractiveView.h"
 
 @implementation InteractiveView
 
@@ -94,17 +94,6 @@ static KeyNotes sKeyList[] =
 	{ -1, @"B8"},	// 
 };
 
-typedef struct
-{
-	CGRect		mBound;
-	int			mKey;
-	NSString*	mMidiNoteName;
-	BOOL		mPressed;
-} KeySquare;
-
-#define KEY_SQUARE_MAX	(6*7)
-static KeySquare sSquares[KEY_SQUARE_MAX];
-
 static int sKeyUsed[KEY_SQUARE_MAX] = 
 {
 	NOTE_E(3), NOTE_C(3), NOTE_A(2), NOTE_D(3), NOTE_G(2), NOTE_F(2),
@@ -121,25 +110,21 @@ static int sKeyUsed[KEY_SQUARE_MAX] =
 #define KEY_TOP_EDGE 20
 #define KEY_BOTTOM_EDGE -135
 
-// http://anythingpeaceful.org/sonar/gm/gm-instruments.html
-typedef struct
-{
-	unsigned char	mInstrument;
-	unsigned char	mChannel;
-} KeySquareSetup;
+// http://www.midi.org/techspecs/gm1sound.php
 
 #define PIANO		{0, 0}
-#define STRING		{103, 1}
+#define STRING1		{49, 1}
+#define STRING2		{51, 1}
 #define LEAD_SYNTH	{80, 2}
-static KeySquareSetup sKeySetup[KEY_SQUARE_MAX] =
+static KeySquareSetup sDefaultKeySetup[KEY_SQUARE_MAX] =
 {
 	PIANO, PIANO, PIANO, PIANO, PIANO, PIANO, 
 	LEAD_SYNTH, LEAD_SYNTH, LEAD_SYNTH, LEAD_SYNTH, LEAD_SYNTH, LEAD_SYNTH, 
-	STRING, STRING, STRING, STRING, STRING, STRING, 
-	STRING, STRING, STRING, STRING, STRING, STRING, 
-	STRING, STRING, STRING, STRING, STRING, STRING, 
-	STRING, STRING, STRING, STRING, STRING, STRING, 
-	STRING, STRING, STRING, STRING, STRING, STRING, 
+	STRING1, STRING1, STRING1, STRING1, STRING1, STRING1, 
+	STRING1, STRING1, STRING1, STRING1, STRING1, STRING1, 
+	STRING2, STRING2, STRING2, STRING2, STRING2, STRING2, 
+	STRING2, STRING2, STRING2, STRING2, STRING2, STRING2, 
+	STRING2, STRING2, STRING2, STRING2, STRING2, STRING2, 
 };
 
 - (id)initWithFrame:(CGRect)frame 
@@ -160,26 +145,30 @@ static KeySquareSetup sKeySetup[KEY_SQUARE_MAX] =
 		square.size.width = (area.size.width / 6);
 		for (int count = 0; count < KEY_SQUARE_MAX; count++)
 		{
-			sSquares[count].mKey = sKeyList[sKeyUsed[count]].mMidiNote;
-			sSquares[count].mMidiNoteName = sKeyList[sKeyUsed[count]].mMidiNoteName;
+			mSquares[count].mKey = sKeyList[sKeyUsed[count]].mMidiNote;
+			mSquares[count].mMidiNoteName = sKeyList[sKeyUsed[count]].mMidiNoteName;
 
-			sSquares[count].mBound = square;
+			mSquares[count].mBound = square;
 			square.origin.x += square.size.width;
 			if (square.origin.x >= area.size.width)
 			{
 				square.origin.x = area.origin.x;
 				square.origin.y += square.size.height;
 			}
-			sSquares[count].mPressed = FALSE;
+			mSquares[count].mPressed = 0;
+			mKeySetup[count] = sDefaultKeySetup[count];
 		}
 
 		iOSPlayAppDelegate* app = (iOSPlayAppDelegate*)[[UIApplication sharedApplication] delegate];
+
+		// turn on nice verb
+		BAEMixer_SetDefaultReverb([app getMixer], BAE_REVERB_TYPE_8);
 		mInteractiveSong = BAESong_New([app getMixer]);
 		
 		for (int count = 0; count < KEY_SQUARE_MAX; count++)
 		{
-			unsigned char instrument = sKeySetup[count].mInstrument;
-			unsigned char channel = sKeySetup[count].mChannel;
+			unsigned char instrument = mKeySetup[count].mInstrument;
+			unsigned char channel = mKeySetup[count].mChannel;
 			printf("Load sq %d inst %d chan %d\n", count, instrument, channel);
 			BAEResult result = BAESong_LoadInstrument(mInteractiveSong, instrument);
 			if (result)
@@ -187,6 +176,7 @@ static KeySquareSetup sKeySetup[KEY_SQUARE_MAX] =
 				printf("Bad load %d\n", instrument);
 			}
 			BAESong_ProgramChange(mInteractiveSong, channel, instrument, 0);
+			BAESong_ControlChange(mInteractiveSong, channel, REVERB_SEND, 100, 0);
 		}
     }
     return self;
@@ -248,10 +238,10 @@ const float ROT_270 = (M_PI * 270.0 / 180.0);
 	// fill squares
 	for (int count = 0; count < KEY_SQUARE_MAX; count++)
 	{
-		if (sSquares[count].mPressed)
+		if (mSquares[count].mPressed)
 		{
 			CGContextSetRGBFillColor(context, 0.6, 0.3, 1.0, 1.0);
-			CGContextFillRect(context, sSquares[count].mBound);
+			CGContextFillRect(context, mSquares[count].mBound);
 		}
 	}
 
@@ -262,7 +252,7 @@ const float ROT_270 = (M_PI * 270.0 / 180.0);
 	
 	for (int count = 0; count < KEY_SQUARE_MAX; count++)
 	{
-		CGContextAddRect(context, sSquares[count].mBound);
+		CGContextAddRect(context, mSquares[count].mBound);
 	}
 	CGContextStrokePath(context);
 
@@ -274,15 +264,15 @@ const float ROT_270 = (M_PI * 270.0 / 180.0);
 	xform = CGAffineTransformScale(xform, -1.0, 1.0);
 	xform = CGAffineTransformTranslate(xform, 0, 0);
     CGContextSetTextMatrix(context, xform);
-	
+
 	for (int count = 0; count < KEY_SQUARE_MAX; count++)
 	{
-		const char* noteName = [sSquares[count].mMidiNoteName cStringUsingEncoding:NSMacOSRomanStringEncoding];
-		NSString* noteNumberName = [[NSString alloc] initWithFormat: @"%d", sSquares[count].mKey];
+		const char* noteName = [mSquares[count].mMidiNoteName cStringUsingEncoding:NSMacOSRomanStringEncoding];
+		NSString* noteNumberName = [[NSString alloc] initWithFormat: @"%d", mSquares[count].mKey];
 		const char* noteNumber = [noteNumberName cStringUsingEncoding:NSMacOSRomanStringEncoding];
 
-		CGPoint p = sSquares[count].mBound.origin;
-		if (sSquares[count].mPressed)
+		CGPoint p = mSquares[count].mBound.origin;
+		if (mSquares[count].mPressed)
 		{
 			CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
 		}
@@ -290,10 +280,16 @@ const float ROT_270 = (M_PI * 270.0 / 180.0);
 		{
 			CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
 		}
-		CGContextShowTextAtPoint(context, p.x + (square.size.width * .8), p.y + 5, noteName, strlen(noteName));
-		CGContextShowTextAtPoint(context, p.x + (square.size.width * .3), p.y + 5, noteNumber, strlen(noteNumber));
+		if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+		{
+			CGContextShowTextAtPoint(context, p.x + (square.size.width * .8), p.y + 5, noteName, strlen(noteName));
+			CGContextShowTextAtPoint(context, p.x + (square.size.width * .3), p.y + 5, noteNumber, strlen(noteNumber));
+		}
+		if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+		{
+			CGContextShowTextAtPoint(context, p.x + (square.size.width * .8), p.y + 5, noteName, strlen(noteName));
+		}
 	}
-
 	// draw outer border
 	CGContextSetRGBStrokeColor(context, 1.0, 0, 0, 1.0);
 	CGContextAddRect(context, self.bounds);
@@ -310,22 +306,25 @@ const float ROT_270 = (M_PI * 270.0 / 180.0);
 //
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	CGPoint point;
-	
-	int idx = 0;
-	for (UITouch *touch in touches)
+	@synchronized (self)
 	{
-		point = [touch locationInView: [touch view]];
-		idx++;
-		//printf("touch begin %f %f\n", point.x, point.y);
-		for (int count = 0; count < KEY_SQUARE_MAX; count++)
+		CGPoint point;
+		
+		int idx = 0;
+		for (UITouch *touch in touches)
 		{
-			if (CGRectContainsPoint(sSquares[count].mBound, point))
+			point = [touch locationInView: [touch view]];
+			idx++;
+			//printf("touch begin %f %f\n", point.x, point.y);
+			for (int count = 0; count < KEY_SQUARE_MAX; count++)
 			{
-				sSquares[count].mPressed = TRUE;
-				BAESong_NoteOn(mInteractiveSong, sKeySetup[count].mChannel, sSquares[count].mKey, 100, 0);
-				[self setNeedsDisplayInRect:sSquares[count].mBound];
-				printf("note on %d\n", sSquares[count].mKey);
+				if (CGRectContainsPoint(mSquares[count].mBound, point))
+				{
+					mSquares[count].mPressed++;
+					BAESong_NoteOn(mInteractiveSong, mKeySetup[count].mChannel, mSquares[count].mKey, 100, 0);
+					[self setNeedsDisplayInRect:mSquares[count].mBound];
+					printf("note on %d %d\n", mSquares[count].mKey, mSquares[count].mPressed);
+				}
 			}
 		}
 	}
@@ -333,40 +332,37 @@ const float ROT_270 = (M_PI * 270.0 / 180.0);
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	int idx = 0;
-	for (UITouch *touch in touches)
+	@synchronized (self)
 	{
-		CGPoint point = [touch locationInView: [touch view]];
-		CGPoint prevPoint = [touch previousLocationInView: [touch view]];
-
-		idx++;
-		//printf("touch moved %f %f\n", point.x, point.y);
-		for (int count = 0; count < KEY_SQUARE_MAX; count++)
+		int idx = 0;
+		for (UITouch *touch in touches)
 		{
-			BOOL newPress = CGRectContainsPoint(sSquares[count].mBound, point);
-			BOOL oldPress = CGRectContainsPoint(sSquares[count].mBound, prevPoint);
+			CGPoint point = [touch locationInView: [touch view]];
+			CGPoint prevPoint = [touch previousLocationInView: [touch view]];
 
-			if (oldPress != newPress)
+			idx++;
+			//printf("touch moved %f %f\n", point.x, point.y);
+			for (int count = 0; count < KEY_SQUARE_MAX; count++)
 			{
-				if (newPress)
+				BOOL newPress = CGRectContainsPoint(mSquares[count].mBound, point);
+				BOOL oldPress = CGRectContainsPoint(mSquares[count].mBound, prevPoint);
+
+				if (oldPress != newPress)
 				{
-					if (sSquares[count].mPressed == FALSE)
+					if (newPress)
 					{
-						sSquares[count].mPressed = TRUE;
-						BAESong_NoteOn(mInteractiveSong, sKeySetup[count].mChannel, sSquares[count].mKey, 100, 0);
-						printf("note on %d\n", sSquares[count].mKey);
+						mSquares[count].mPressed++;
+						BAESong_NoteOn(mInteractiveSong, mKeySetup[count].mChannel, mSquares[count].mKey, 100, 0);
+						printf("note on %d %d\n", mSquares[count].mKey, mSquares[count].mPressed);
 					}
-				}
-				if (oldPress)
-				{
-					if (sSquares[count].mPressed)
+					if (oldPress)
 					{
-						sSquares[count].mPressed = FALSE;
-						BAESong_NoteOff(mInteractiveSong, sKeySetup[count].mChannel, sSquares[count].mKey, 100, 0);
-						printf("note off %d\n", sSquares[count].mKey);
+						mSquares[count].mPressed--;
+						BAESong_NoteOff(mInteractiveSong, mKeySetup[count].mChannel, mSquares[count].mKey, 100, 0);
+						printf("note off %d %d\n", mSquares[count].mKey, mSquares[count].mPressed);
 					}
+					[self setNeedsDisplayInRect:mSquares[count].mBound];
 				}
-				[self setNeedsDisplayInRect:sSquares[count].mBound];
 			}
 		}
 	}
@@ -374,37 +370,51 @@ const float ROT_270 = (M_PI * 270.0 / 180.0);
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	BOOL allTouchesEnded = ([touches count] == [[event touchesForView:self] count]);
-	
-	int idx = 0;
-	for (UITouch *touch in touches)
+	@synchronized (self)
 	{
-		CGPoint point = [touch locationInView: [touch view]];
-		//CGPoint prevPoint = [touch previousLocationInView: [touch view]];
+		BOOL allTouchesEnded = ([touches count] == [[event touchesForView:self] count]);
 		
-		idx++;
-		//printf("touch end %f %f\n", point.x, point.y);
-		for (int count = 0; count < KEY_SQUARE_MAX; count++)
+		int idx = 0;
+		for (UITouch *touch in touches)
 		{
-			if (sSquares[count].mPressed)
+			CGPoint point = [touch locationInView: [touch view]];
+			CGPoint prevPoint = [touch previousLocationInView: [touch view]];
+			
+			idx++;
+			//printf("touch end %f %f\n", point.x, point.y);
+			for (int count = 0; count < KEY_SQUARE_MAX; count++)
 			{
-				if (CGRectContainsPoint(sSquares[count].mBound, point))
+				BOOL off = NO;
+				
+				if (CGRectContainsPoint(mSquares[count].mBound, point))
 				{
-					[self setNeedsDisplayInRect:sSquares[count].mBound];
-					sSquares[count].mPressed = FALSE;
-					BAESong_NoteOff(mInteractiveSong, sKeySetup[count].mChannel, sSquares[count].mKey, 100, 0);
-					printf("note off %d\n", sSquares[count].mKey);
+					off = YES;
+				}
+				if (CGRectContainsPoint(mSquares[count].mBound, prevPoint))
+				{
+					off = YES;
+				}
+				if (off)
+				{
+					mSquares[count].mPressed--;
+					BAESong_NoteOff(mInteractiveSong, mKeySetup[count].mChannel, mSquares[count].mKey, 100, 0);
+					printf("note off %d %d\n", mSquares[count].mKey, mSquares[count].mPressed);
+					[self setNeedsDisplayInRect:mSquares[count].mBound];
 				}
 			}
 		}
-	}
-	//if (allTouchesEnded)
-	{
-		for (int count = 0; count < KEY_SQUARE_MAX; count++)
+		if (allTouchesEnded)
 		{
-			if (sSquares[count].mPressed)
+			for (int count = 0; count < KEY_SQUARE_MAX; count++)
 			{
-				printf("note %d still on\n", sSquares[count].mKey);
+				if (mSquares[count].mPressed)
+				{
+					printf("note %d still on\n", mSquares[count].mKey);
+					mSquares[count].mPressed = 0;
+					BAESong_NoteOff(mInteractiveSong, mKeySetup[count].mChannel, mSquares[count].mKey, 100, 0);
+					printf("note off %d %d\n", mSquares[count].mKey, mSquares[count].mPressed);
+					[self setNeedsDisplayInRect:mSquares[count].mBound];
+				}
 			}
 		}
 	}
@@ -412,20 +422,23 @@ const float ROT_270 = (M_PI * 270.0 / 180.0);
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {	
-	int idx = 0;
-	for (UITouch *touch in touches)
+	@synchronized (self)
 	{
-		CGPoint point = [touch locationInView: [touch view]];
-		CGPoint prevPoint = [touch previousLocationInView: [touch view]];
-
-		idx++;
-		printf("touch cancel %f %f\n", point.x, point.y);
-		for (int count = 0; count < KEY_SQUARE_MAX; count++)
+		int idx = 0;
+		for (UITouch *touch in touches)
 		{
-			if (CGRectContainsPoint(sSquares[count].mBound, prevPoint))
+			CGPoint point = [touch locationInView: [touch view]];
+			CGPoint prevPoint = [touch previousLocationInView: [touch view]];
+
+			idx++;
+			printf("touch cancel %f %f\n", point.x, point.y);
+			for (int count = 0; count < KEY_SQUARE_MAX; count++)
 			{
-				sSquares[count].mPressed = FALSE;
-				[self setNeedsDisplayInRect:sSquares[count].mBound];
+				if (CGRectContainsPoint(mSquares[count].mBound, prevPoint))
+				{
+					mSquares[count].mPressed--;
+					[self setNeedsDisplayInRect:mSquares[count].mBound];
+				}
 			}
 		}
 	}
