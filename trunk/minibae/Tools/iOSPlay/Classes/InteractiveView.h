@@ -10,10 +10,29 @@
 #import "iOSPlayAppDelegate.h"
 
 
+#define KEY_SQUARE_MAX	(6*7)
+
+typedef struct
+{
+	CGRect		mBound;
+	int			mKey;
+	NSString*	mMidiNoteName;
+	int			mPressed;	// count for multiple pressed of the same note
+} KeySquare;
+
+typedef struct
+{
+	unsigned char	mInstrument;
+	unsigned char	mChannel;
+} KeySquareSetup;
+
+
 @interface InteractiveView : UIView 
 {
-	CGRect square;
-	BAESong	mInteractiveSong;
+	CGRect			square;
+	BAESong			mInteractiveSong;
+	KeySquare		mSquares[KEY_SQUARE_MAX];
+	KeySquareSetup	mKeySetup[KEY_SQUARE_MAX];
 }
 
 void drawLinearGradient(CGContextRef context, CGRect rect, CGColorRef startColor, 

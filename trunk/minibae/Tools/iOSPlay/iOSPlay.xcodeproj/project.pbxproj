@@ -113,6 +113,9 @@
 		AA45ED7312593DFA007A7D0A /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA45ED6D12593DFA007A7D0A /* CoreAudio.framework */; };
 		AA45ED7412593DFA007A7D0A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA45ED6E12593DFA007A7D0A /* AudioToolbox.framework */; };
 		AA45ED7512593DFA007A7D0A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA45ED6F12593DFA007A7D0A /* Foundation.framework */; };
+		AA6D301E12AADFF3005F48EB /* ProgramList.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA6D301D12AADFF3005F48EB /* ProgramList.plist */; };
+		AA6D302312AAE1BE005F48EB /* InteractiveView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA6D302212AAE1BE005F48EB /* InteractiveView~ipad.xib */; };
+		AA6D302512AAE1CB005F48EB /* InteractiveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA6D302412AAE1CB005F48EB /* InteractiveView.xib */; };
 		AA802B80125EBB3700281366 /* FirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA802B7B125EBB3700281366 /* FirstView.xib */; };
 		AA802B81125EBB3700281366 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA802B7C125EBB3700281366 /* MainWindow.xib */; };
 		AA802B82125EBB3700281366 /* PlayFileDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA802B7D125EBB3700281366 /* PlayFileDetail.xib */; };
@@ -253,6 +256,9 @@
 		AA45ED6D12593DFA007A7D0A /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		AA45ED6E12593DFA007A7D0A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		AA45ED6F12593DFA007A7D0A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		AA6D301D12AADFF3005F48EB /* ProgramList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ProgramList.plist; path = Resources/ProgramList.plist; sourceTree = "<group>"; };
+		AA6D302212AAE1BE005F48EB /* InteractiveView~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "InteractiveView~ipad.xib"; path = "Resources-iPad/InteractiveView~ipad.xib"; sourceTree = "<group>"; };
+		AA6D302412AAE1CB005F48EB /* InteractiveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = InteractiveView.xib; path = Resources/InteractiveView.xib; sourceTree = "<group>"; };
 		AA802B7B125EBB3700281366 /* FirstView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FirstView.xib; path = Resources/FirstView.xib; sourceTree = "<group>"; };
 		AA802B7C125EBB3700281366 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
 		AA802B7D125EBB3700281366 /* PlayFileDetail.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PlayFileDetail.xib; path = Resources/PlayFileDetail.xib; sourceTree = "<group>"; };
@@ -338,6 +344,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AA6D301D12AADFF3005F48EB /* ProgramList.plist */,
 				AAA254C8125EDBDA00EB2F30 /* background_wood.png */,
 				8D1107310486CEB800E47090 /* iOSPlay-Info.plist */,
 				AA45ECD812593D24007A7D0A /* rmf */,
@@ -347,6 +354,7 @@
 				AA802B7F125EBB3700281366 /* SecondView.xib */,
 				AA802B7D125EBB3700281366 /* PlayFileDetail.xib */,
 				AA802B7E125EBB3700281366 /* PlayTableView.xib */,
+				AA6D302412AAE1CB005F48EB /* InteractiveView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -511,6 +519,7 @@
 				AA2B83B9125EC6DF009E4319 /* MainWindow-iPad.xib */,
 				AA2B83BA125EC6DF009E4319 /* PlayFileDetail~ipad.xib */,
 				AA2B83BB125EC6DF009E4319 /* PlayTableView~ipad.xib */,
+				AA6D302212AAE1BE005F48EB /* InteractiveView~ipad.xib */,
 			);
 			name = "Resources-iPad";
 			sourceTree = "<group>";
@@ -645,6 +654,9 @@
 				AA2B83C0125EC6DF009E4319 /* PlayTableView~ipad.xib in Resources */,
 				AA2B83C1125EC6DF009E4319 /* SecondView~ipad.xib in Resources */,
 				AAA254C9125EDBDA00EB2F30 /* background_wood.png in Resources */,
+				AA6D301E12AADFF3005F48EB /* ProgramList.plist in Resources */,
+				AA6D302312AAE1BE005F48EB /* InteractiveView~ipad.xib in Resources */,
+				AA6D302512AAE1CB005F48EB /* InteractiveView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,7 +731,7 @@
 					"X_PLATFORM=X_IOS",
 				);
 				GCC_UNROLL_LOOPS = YES;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = 4.2;
 				INFOPLIST_FILE = "iOSPlay-Info.plist";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = iOSPlay;
